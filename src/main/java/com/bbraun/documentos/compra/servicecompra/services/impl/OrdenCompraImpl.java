@@ -45,8 +45,8 @@ public class OrdenCompraImpl implements IOrdenCompraService {
     public OrdenCompra save(OrdenCompraDto dto) {
         //el dto trae el nombre del proveedor, hay una confusion de atributos ya que reutilizo el mismo modelo
         //al igual con el idsolicitudcotizacion, en el dto trae el de solicitud de compra, hay error de valor nms
-        Proveedor proveedor = restTemplate.getForObject("http://localhost:9000/api/proveedor/proveedor/getByNombre/"+dto.getId_proveedor(), Proveedor.class);
-        String codigo_coti = restTemplate.getForObject("http://localhost:9000/api/cotizacion/coti-c/code/"+dto.getId_solicitud_cotizacion(), String.class);
+        Proveedor proveedor = restTemplate.getForObject("https://service-gateway-bbraun.azurewebsites.net/api/proveedor/proveedor/getByNombre/"+dto.getId_proveedor(), Proveedor.class);
+        String codigo_coti = restTemplate.getForObject("https://service-gateway-bbraun.azurewebsites.net/api/cotizacion/coti-c/code/"+dto.getId_solicitud_cotizacion(), String.class);
         OrdenCompra ordenCompra = OrdenCompra.builder()
                 .idordencompra(codigoGeneratorService.generateCodigo())
                 .idsolicitudcotizacion(codigo_coti)
